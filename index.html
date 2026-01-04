@@ -1,23 +1,703 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+    <!-- JSON-LD Structured Data for FAQPage and Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "2톤 포장이사 비용은 얼마나 드나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2톤 포장이사 비용은 이사 형태(포장/반포장/일반), 짐량, 거리, 인력 수, 옵션 서비스(에어컨 설치 등)에 따라 크게 달라집니다. 특히 짐량에 따라 2톤 트럭이 아닌 2.5톤 트럭을 사용하게 될 경우 비용이 추가될 수 있습니다. 2026년 평균 비용은 50만 원에서 100만 원 사이로 형성되나, 정확한 견적은 방문 견적을 통해 확인하는 것이 가장 좋습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "2톤 이사는 어떤 경우에 적합한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "2톤 이사는 원룸이나 1.5룸, 짐이 적은 2룸 거주자에게 적합한 서비스입니다. 짐량은 일반적인 1인 가구 또는 신혼부부 중 짐이 적은 편에 해당하며, 짐량이 많다면 2.5톤이나 5톤 포장이사를 고려해야 합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "2톤이사 비용을 절약할 수 있는 팁이 있나요?",
+          "@id": "#절약팁-답변",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "비용 절약을 위해서는 이사 비수기인 평일이나 2~4월, 11~1월을 이용하는 것이 좋으며, 짐을 미리 정리하여 짐량을 줄이거나 반포장이사를 선택하는 방법이 있습니다. 또한 여러 업체의 견적을 비교하는 것이 필수적입니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2c3e50; /* Dark Blue Gray for professionalism */
+            --secondary-color: #3498db; /* Bright Blue for emphasis */
+            --accent-color: #2ecc71; /* Green for success/call to action */
+            --text-color: #333;
+            --bg-light: #f7f9fc; /* Light background */
+            --bg-white: #ffffff;
+            --btn-cta: #e74c3c; /* Reddish Orange for CTA */
+            --shadow-light: rgba(0, 0, 0, 0.08);
+        }
+
+        /* Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            box-shadow: 0 2px 5px var(--shadow-light);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        header h1 a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            background-color: var(--btn-cta);
+            color: #fff;
+            padding: 18px 40px;
+            font-size: 1.4em;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        /* Comparison Form Box */
+        .compare-form-box {
+            background-color: var(--bg-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px var(--shadow-light);
+            margin-top: 50px;
+        }
+
+        .compare-form-box h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        .compare-form-box label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .compare-form-box input[type="text"],
+        .compare-form-box input[type="tel"],
+        .compare-form-box input[type="email"],
+        .compare-form-box select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background-color: var(--bg-white);
+            padding: 60px 0;
+            margin-top: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px var(--shadow-light);
+        }
+
+        .content-section h2 {
+            font-size: 2.5em;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .content-section h3 {
+            font-size: 1.8em;
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+        }
+        
+        /* Article Styles */
+        .article-body p {
+            font-size: 1.05em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .article-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .article-body ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+        .article-body ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .feature-grid .item {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            padding: 30px;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-grid .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-grid .item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1em;
+            text-align: left;
+        }
+
+        table th, table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: var(--bg-light);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Graph/Bar Chart Simulation (for price comparison) */
+        .price-graph {
+            margin: 40px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 250px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .price-graph .bar {
+            width: 15%;
+            background-color: var(--secondary-color);
+            margin: 0 10px;
+            position: relative;
+            border-radius: 5px 5px 0 0;
+            transition: height 0.5s ease;
+        }
+
+        .price-graph .bar:nth-child(2) { background-color: var(--accent-color); }
+        .price-graph .bar:nth-child(3) { background-color: #e67e22; }
+
+        .price-graph .label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #555;
+            text-align: center;
+        }
+
+        .price-graph .value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 700;
+            font-size: 0.9em;
+            color: var(--primary-color);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+        }
+
+        .faq-item h3 {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .faq-item h3::after {
+            content: '+';
+            font-size: 1.5em;
+            color: var(--secondary-color);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active h3::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-item p {
+            display: none;
+            padding-top: 15px;
+            color: #555;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        /* Keyword List */
+        .keyword-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .keyword-list li {
+            background-color: #ecf0f1; /* Light gray */
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+        }
+        .keyword-list li:hover { background-color: #dde1e5; }
+        .keyword-list-small { font-size: 0.8em; }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9em;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .hero p { font-size: 1.2em; }
+            .cta-btn { padding: 15px 30px; font-size: 1.2em; }
+            .compare-form-box { padding: 25px; margin-top: 30px; }
+            .content-section h2 { font-size: 2em; }
+            .content-section h3 { font-size: 1.5em; }
+            .feature-grid .item { width: 100%; margin: 10px 0; }
+            .price-graph { flex-direction: column; height: auto; align-items: stretch; }
+            .price-graph .bar { width: 80%; margin: 10px auto; }
+            table { font-size: 0.9em; }
+            table th, table td { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">2톤이사 가격 비교 플랫폼</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Hero Section: Main Call to Action -->
+        <section class="hero">
+            <div class="container">
+                <h1>2톤이사 저렴한 곳, 2026년 최저가 견적을 지금 바로 비교하세요!</h1>
+                <p>복잡한 이사 준비, 이제 전문가에게 맡기세요. 2톤 포장이사부터 반포장이사까지, 전국 이사 업체들의 실시간 견적을 한 번에 비교해 드립니다.</p>
+                <div class="compare-form-box">
+                    <h2>실시간 2톤 이사 비용 무료 견적 받기</h2>
+                    <p>간단한 정보 입력으로 **저렴한 2톤 포장이사** 상품을 찾아드립니다. 고객님의 소중한 이사를 위한 최적의 파트너를 만나보세요.</p>
+                    <form action="#" method="post">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" placeholder="이름을 입력하세요" required>
+
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" placeholder="휴대폰 번호를 입력하세요" required>
+
+                        <label for="email">출발지 주소 (시/군/구)</label>
+                        <input type="text" id="start-location" placeholder="예: 서울특별시 강남구" required>
+
+                        <label for="end-location">도착지 주소 (시/군/구)</label>
+                        <input type="text" id="end-location" placeholder="예: 경기도 성남시 분당구" required>
+
+                        <button type="submit" class="cta-btn">2톤이사 최저가 견적 신청</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Section 1: Service Features -->
+        <section class="content-section">
+            <div class="container">
+                <h2>왜 저희 '2톤이사 가격비교'를 선택해야 할까요?</h2>
+                <div class="feature-grid">
+                    <div class="item">
+                        <img src="https://via.placeholder.com/80/2c3e50/fff?text=ICON1" alt="견적비교 아이콘">
+                        <h3>1분 만에 끝내는 실시간 견적</h3>
+                        <p>바쁜 고객님을 위해 짐량, 거리 등 기본 정보만으로 모든 제휴 이사업체의 **2톤 포장이사 가격**을 빠르게 비교합니다. 번거로운 전화 상담 없이 바로 견적 확인이 가능합니다.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/80/2c3e50/fff?text=ICON2" alt="가격경쟁 아이콘">
+                        <h3>투명한 가격 경쟁 유도</h3>
+                        <p>여러 이사 업체가 경쟁하는 시스템으로 **2톤이사 저렴한 곳**을 손쉽게 찾을 수 있습니다. 거품 없는 가격으로 최고의 서비스를 제공하는 업체를 선택하세요.</p>
+                    </div>
+                    <div class="item">
+                        <img src="https://via.placeholder.com/80/2c3e50/fff?text=ICON3" alt="고객후기 아이콘">
+                        <h3>검증된 고객 후기 기반 추천</h3>
+                        <p>실제 이용 고객들의 **내돈내산 2톤이사 후기**를 기반으로 믿을 수 있는 업체를 추천해 드립니다. 서비스 품질까지 꼼꼼하게 따져보세요.</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 60px;">함께 많이 찾는 키워드</h3>
+                <ul class="keyword-list">
+                    <li>#2톤포장이사비용</li>
+                    <li>#소형이사견적</li>
+                    <li>#반포장이사2톤</li>
+                    <li>#원룸이사추천</li>
+                    <li>#가성비좋은이사</li>
+                    <li>#서울2톤이사</li>
+                    <li>#부산2톤이사</li>
+                    <li>#경기2톤이사</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Content Section 2: Detailed Information and Tips (High Volume Text) -->
+        <section class="content-section article-body">
+            <div class="container">
+                <h2>2026년 최신 2톤 이사 서비스 완벽 가이드</h2>
+                <p>
+                    2톤 이사는 짐량이 적은 1~2인 가구에게 가장 적합한 이사 형태입니다. 하지만 이사 비용은 단순히 '2톤 트럭'을 사용한다는 것 이상의 복잡한 요소들로 결정됩니다. 많은 분들이 **2톤 포장이사**를 선택하지만, 짐량과 예산에 따라 **2톤 반포장이사**나 일반이사를 고려할 수도 있습니다. 저희는 고객님께서 이사 형태를 정확히 이해하고 **2톤이사 저렴한 곳**을 찾을 수 있도록 돕기 위해 2026년 최신 이사 정보를 분석했습니다.
+                </p>
+
+                <h3>1. 2톤 이사, 어떤 짐량에 적합할까요?</h3>
+                <p>
+                    2톤 트럭은 1톤 트럭보다 약 1.5배의 짐을 실을 수 있으며, 보통 1인 가구 또는 짐이 적은 신혼부부의 짐을 옮기는 데 사용됩니다. 2톤 이사 짐량은 일반적으로 옷장, 침대, 냉장고, 세탁기 등 필수 가전가구와 박스 15~20개 내외의 짐을 기준으로 합니다. 만약 짐이 이 기준보다 많아 2톤 트럭에 실리지 못하고 추가 차량을 사용하게 되면 비용이 크게 증가하므로, 사전에 정확한 짐량을 파악하는 것이 중요합니다. 특히 짐이 많은 2인 가구의 경우 2톤 포장이사가 아닌 2.5톤이나 5톤으로 견적을 받아보는 것이 좋습니다.
+                </p>
+
+                <div class="callout-box" style="background-color: #f0f8ff; padding: 20px; border-radius: 8px; border-left: 5px solid #3498db; margin: 20px 0;">
+                    <p><strong>짐량 체크리스트:</strong> 2톤 이사 적합 여부 확인</p>
+                    <ul>
+                        <li><span style="font-weight: bold;">가구:</span> 침대(퀸 사이즈 이하), 옷장(3~4칸), 서랍장, 식탁(2~4인용)</li>
+                        <li><span style="font-weight: bold;">가전:</span> 냉장고(소형~중형), 세탁기(일반/드럼), TV, 전자레인지</li>
+                        <li><span style="font-weight: bold;">생활짐:</span> 이사 박스 15개 내외, 기타 생활용품</li>
+                    </ul>
+                </div>
+
+                <h3>2. 2톤 포장이사 vs. 2톤 반포장이사 비교</h3>
+                <p>
+                    **2톤이사**를 계획할 때 가장 먼저 결정해야 하는 부분은 '포장이사'로 할지 '반포장이사'로 할지입니다. 두 서비스는 비용과 편리성에서 큰 차이가 있습니다.
+                </p>
+
+                <h4>포장이사 (Full-Service Moving)</h4>
+                <p>
+                    포장이사는 모든 짐의 포장부터 운반, 배치, 정리정돈까지 이사업체가 전담하는 서비스입니다. 고객은 손 하나 까딱할 필요 없이 이사 후 정리된 집으로 들어갈 수 있어 편리합니다. <strong>2톤 포장이사</strong>의 경우, 짐량이 적어 작업 시간이 짧다는 장점이 있습니다. 다만, 인건비가 포함되어 있어 **2톤 반포장이사**보다 비용이 높습니다. 바쁘거나 이사에 대한 부담을 느끼는 분들에게 추천됩니다.
+                </p>
+
+                <h4>반포장이사 (Semi-Packed Moving)</h4>
+                <p>
+                    반포장이사는 짐 포장은 이사업체에서 진행하지만, 도착지에서의 짐 정리정돈은 고객이 직접 하는 방식입니다. 짐을 풀고 정리하는 수고를 감수하는 대신 <strong>2톤 포장이사 비용</strong>보다 10~20%가량 절약할 수 있습니다. 짐량이 적고 이사 경험이 있으며, 예산을 절약하고 싶은 분들에게 인기가 많습니다. **2톤 반포장이사**는 특히 짐이 많지 않은 1인 가구에게 추천되는 **2톤이사 저렴한 곳**을 찾는 핵심 방법 중 하나입니다.
+                </p>
+
+                <h3>3. 2026년 2톤이사 비용에 영향을 미치는 핵심 요소</h3>
+                <p>
+                    **2톤이사 비용**은 정해진 가격이 없습니다. 매년 물가 상승률과 인건비 변동으로 인해 2026년 이사 비용 또한 예년과 차이가 있을 수 있습니다. 다음은 **2톤 포장이사 싼곳**을 찾을 때 고려해야 할 주요 요인들입니다.
+                </p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>비용 결정 요소</th>
+                                <th>세부 설명</th>
+                                <th>비용 영향</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>이삿날 (요일 및 계절)</strong></td>
+                                <td>손 없는 날, 주말, 이사 성수기(봄, 가을)는 수요가 집중되어 가격이 높습니다. 평일, 비수기 이사는 가격 절감에 유리합니다.</td>
+                                <td>가장 큰 변동폭</td>
+                            </tr>
+                            <tr>
+                                <td><strong>이사 형태 (포장 vs. 반포장)</strong></td>
+                                <td>포장이사는 반포장이사보다 인건비가 추가되어 10~20% 비쌉니다.</td>
+                                <td>중요한 변동 요인</td>
+                            </tr>
+                            <tr>
+                                <td><strong>운반 거리 및 지역</strong></td>
+                                <td>출발지와 도착지의 거리가 멀수록(장거리 이사) 유류비 및 인건비가 추가됩니다. 서울, 경기 등 수도권 지역은 지방보다 평균 인건비가 높은 편입니다.</td>
+                                <td>변동 요인</td>
+                            </tr>
+                            <tr>
+                                <td><strong>추가 옵션 서비스</strong></td>
+                                <td>에어컨 설치/분해, 벽걸이 TV 설치, 사다리차 이용, 특수 포장 등은 모두 추가 비용이 발생합니다.</td>
+                                <td>추가 비용 발생</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>4. 전국 주요 지역별 2톤이사 비용 동향 (2026년 기준)</h3>
+                <p>
+                    지역별 인건비와 물가 수준에 따라 **2톤이사 비용**은 차이를 보입니다. 특히 수도권 지역은 이사 수요가 많고 인건비가 높아 지방보다 평균 가격대가 높습니다. 아래는 2026년 기준으로 주요 지역별 2톤이사(포장이사) 평균 비용을 비교한 가상 그래프입니다. (데이터는 이해를 돕기 위한 예시입니다.)
+                </p>
+
+                <div class="price-graph">
+                    <div class="bar" style="height: 80%;"><span class="value">평균 65만원</span><span class="label">서울/경기</span></div>
+                    <div class="bar" style="height: 65%;"><span class="value">평균 55만원</span><span class="label">인천/부산</span></div>
+                    <div class="bar" style="height: 55%;"><span class="value">평균 50만원</span><span class="label">대전/대구/광주</span></div>
+                    <div class="bar" style="height: 45%;"><span class="value">평균 45만원</span><span class="label">기타 지방</span></div>
+                </div>
+
+                <p style="text-align: center; font-style: italic; color: #777; font-size: 0.9em;">* 주: 위 그래프는 2026년 비성수기 평일 기준 2톤 포장이사 평균 견적을 단순 비교한 것으로, 실제 견적은 업체별로 크게 상이할 수 있습니다.</p>
+
+                <h3>5. 2톤 이사 비용을 절약하는 노하우 (저렴한 2톤이사 팁)</h3>
+                <p>
+                    **2톤이사**를 계획하면서 **저렴한 2톤이사**를 찾고 싶다면 몇 가지 팁을 활용할 수 있습니다. 작은 노력으로도 수십만 원의 비용을 절감할 수 있으니 꼭 참고하시기 바랍니다.
+                </p>
+                <ul>
+                    <li><strong>짐량 최소화:</strong> 이사 전 짐을 최대한 버리거나 중고로 판매하여 짐량을 줄입니다. 짐량이 줄어들면 이사 형태(2톤 → 1.5톤) 변경을 통해 비용을 절약할 수 있습니다.</li>
+                    <li><strong>비수기 평일 이사:</strong> 이사 비수기인 1월, 2월, 7월, 8월 중 평일을 선택하면 성수기 주말 대비 20~30% 저렴하게 이사할 수 있습니다.</li>
+                    <li><strong>반포장이사 선택:</strong> 앞서 언급했듯이 짐 정리 부담을 감수하고 반포장이사를 선택하면 인건비를 절약할 수 있습니다.</li>
+                    <li><strong>여러 업체 견적 비교:</strong> 최소 3곳 이상의 **2톤이사 저렴한 곳** 견적을 비교하세요. 이사 업체마다 가격 정책이 다르므로 견적 비교는 필수입니다.</li>
+                </ul>
+
+                <h3>6. 신뢰할 수 있는 2톤 포장이사 업체 선택 기준</h3>
+                <p>
+                    <strong>2톤이사 추천</strong>을 받을 때 단순히 가격만 보는 것은 위험합니다. 저렴한 가격으로 유인한 후 추가 비용을 청구하거나, 서비스 품질이 현저히 떨어지는 업체도 많기 때문입니다. 다음은 **내돈내산 2톤이사 후기**를 기반으로 한 신뢰할 수 있는 업체 선택 기준입니다.
+                </p>
+                <ul>
+                    <li><strong>정식 허가 업체 확인:</strong> 관할 시·군·구청에 등록된 정식 이사업체인지 확인해야 합니다. 화물자동차 운송 주선사업 허가증을 보유한 업체여야 합니다.</li>
+                    <li><strong>계약서 작성:</strong> 견적 내용(금액, 서비스 범위, 옵션 사항, 파손 보상 책임 등)이 명시된 계약서를 반드시 작성해야 합니다.</li>
+                    <li><strong>후기 및 평점 확인:</strong> 실제 고객 후기를 꼼꼼히 확인하여 업체의 서비스 품질을 가늠합니다.</li>
+                    <li><strong>책임 보험 가입 여부:</strong> 이사 중 파손에 대비하여 이사화물배상책임보험에 가입된 업체인지 확인합니다.</li>
+                </ul>
+
+                <h3>7. 지역별 키워드 리스트 (SEO 강화)</h3>
+                <p class="keyword-list-small">다음은 고객들이 많이 찾는 지역별 <strong>2톤이사</strong> 및 관련 키워드입니다. 저희 플랫폼은 아래 지역을 포함한 전국 모든 지역의 이사 견적을 비교해 드립니다.</p>
+                <ul class="keyword-list">
+                    <li>#서울2톤이사</li>
+                    <li>#강남2톤이사</li>
+                    <li>#송파2톤이사</li>
+                    <li>#용산2톤이사</li>
+                    <li>#인천2톤이사</li>
+                    <li>#부천2톤이사</li>
+                    <li>#수원2톤이사</li>
+                    <li>#성남2톤이사</li>
+                    <li>#분당2톤이사</li>
+                    <li>#일산2톤이사</li>
+                    <li>#고양2톤이사</li>
+                    <li>#화성2톤이사</li>
+                    <li>#세종2톤이사</li>
+                    <li>#대전2톤이사</li>
+                    <li>#천안2톤이사</li>
+                    <li>#청주2톤이사</li>
+                    <li>#부산2톤이사</li>
+                    <li>#해운대2톤이사</li>
+                    <li>#울산2톤이사</li>
+                    <li>#김해2톤이사</li>
+                    <li>#양산2톤이사</li>
+                    <li>#대구2톤이사</li>
+                    <li>#구미2톤이사</li>
+                    <li>#광주2톤이사</li>
+                    <li>#전주2톤이사</li>
+                    <li>#순천2톤이사</li>
+                    <li>#제주2톤이사</li>
+                    <li>#원룸포장이사비용</li>
+                    <li>#가성비2톤이사</li>
+                    <li>#2톤이사후기좋은곳</li>
+                </ul>
+
+                <h3 id="external-links" style="margin-top: 60px;">8. 신뢰할 수 있는 외부 정보 참고</h3>
+                <p>
+                    이사 관련 법규 및 피해 구제 절차는 정부 기관이나 소비자 보호 단체를 통해 확인하는 것이 가장 정확합니다. 이사 계약 전 반드시 관련 정보를 숙지하시기 바랍니다.
+                </p>
+                <ul>
+                    <li><a href="https://www.consumer.go.kr/user/bbs/com/D0000003/view.do?bbsId=T0000008&mnId=10101010101&comId=T0000008&searchCnd=1&searchWrd=%EC%9D%B4%EC%82%AC&pageUnit=10&pageIndex=1" target="_blank" rel="noopener noreferrer">한국소비자원: 이사 서비스 피해 예방 및 대처 방안</a></li>
+                    <li><a href="https://namu.wiki/w/%EC%9D%B4%EC%82%AC" target="_blank" rel="noopener noreferrer">나무위키: 이사 관련 일반 상식 및 정보</a></li>
+                    <li><a href="https://www.molit.go.kr/portal/policy/portalPolicyView.do?policyId=146" target="_blank" rel="noopener noreferrer">국토교통부: 이사화물 운송 주선업 관련 법령 정보</a></li>
+                    <li><a href="http://www.k-mca.or.kr/" target="_blank" rel="noopener noreferrer">한국물류창고업협회: 이사 물류 관련 산업 정보</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Content Section 3: FAQ -->
+        <section class="content-section" style="background-color: #fcfcfc;">
+            <div class="container">
+                <h2>자주 묻는 질문 (FAQ)</h2>
+                <div class="faq-item">
+                    <h3 id="q1">2톤 포장이사 비용은 얼마나 드나요?</h3>
+                    <p>
+                        2톤 포장이사 비용은 이사 형태(포장/반포장/일반), 짐량, 거리, 인력 수, 옵션 서비스(에어컨 설치 등)에 따라 크게 달라집니다. 특히 짐량에 따라 2톤 트럭이 아닌 2.5톤 트럭을 사용하게 될 경우 비용이 추가될 수 있습니다. 2026년 평균 비용은 50만 원에서 100만 원 사이로 형성되나, 정확한 견적은 방문 견적을 통해 확인하는 것이 가장 좋습니다. **2톤이사 저렴한 곳**을 찾기 위해서는 반드시 여러 업체의 견적을 비교해야 합니다.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q2">2톤 이사는 어떤 경우에 적합한가요?</h3>
+                    <p>
+                        2톤 이사는 원룸이나 1.5룸, 짐이 적은 2룸 거주자에게 적합한 서비스입니다. 짐량은 일반적인 1인 가구 또는 신혼부부 중 짐이 적은 편에 해당하며, 짐량이 많다면 2.5톤이나 5톤 포장이사를 고려해야 합니다. 특히 **2톤 포장이사**는 짐이 많지 않은 상태에서 편리한 이사를 원할 때 추천됩니다.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q3">이사 비용을 절약할 수 있는 팁이 있나요?</h3>
+                    <p>
+                        비용 절약을 위해서는 이사 비수기인 평일이나 2~4월, 11~1월을 이용하는 것이 좋으며, 짐을 미리 정리하여 짐량을 줄이거나 반포장이사를 선택하는 방법이 있습니다. 또한 여러 업체의 견적을 비교하는 것이 필수적입니다. 이사 날짜가 확정되었다면 최대한 빨리 견적을 받아보는 것이 좋습니다.
+                    </p>
+                </div>
+                <div class="faq-item">
+                    <h3 id="q4">2톤 이사 시 사다리차는 꼭 사용해야 하나요?</h3>
+                    <p>
+                        사다리차 사용 여부는 이사 형태, 이사 짐량, 건물 층수, 작업 환경에 따라 달라집니다. 보통 3층 이상의 고층 이사나 짐량이 많은 2톤 포장이사에서는 사다리차를 사용하는 것이 일반적이며, 작업 속도를 높이고 파손 위험을 줄일 수 있습니다. 사다리차 사용 여부와 비용은 견적 시 업체와 협의해야 합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>2톤이사 가격 비교 플랫폼</strong> &copy; 2026 All Rights Reserved.</p>
+            <p>
+                <a href="#">개인정보처리방침</a> |
+                <a href="#">이용약관</a> |
+                <a href="#">문의하기</a>
+            </p>
+            <p>본 사이트는 이사 업체 정보를 비교 제공하며, 실제 계약은 해당 업체와 고객 간에 진행됩니다.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for enhanced user experience (FAQ toggle) -->
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+  
